@@ -28,6 +28,19 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
+        <!--mybatis-->
+        <!--<dependency>-->
+            <!--<groupId>org.mybatis</groupId>-->
+            <!--<artifactId>mybatis</artifactId>-->
+            <!--<version>${mybatis.version}</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>3.3.1.tmp</version>
+        </dependency>
     </dependencies>
 
     <build>

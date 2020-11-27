@@ -62,7 +62,7 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">${sessionScope.user.nickname}</a>
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
@@ -180,7 +180,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('管理员列表','admin-list.html')">
+                        <a onclick="xadmin.add_tab('管理员列表','${pageContext.request.contextPath}/user/list')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员列表</cite></a>
                     </li>

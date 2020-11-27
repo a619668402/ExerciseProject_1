@@ -54,12 +54,15 @@
                     type: 'POST',
                     url: '${pageContext.request.contextPath}/login',
                     data: data,
-                    dataType: 'json',
                     success: function (data1) {
-                        layer.msg("登录成功" + data1.username + "--" + data1.password)
-                        setTimeout(function () {
-                            location.href = '${pageContext.request.contextPath}/index'
-                        }, 1500)
+                        if (data1 == "success") {
+                            layer.msg("登录成功")
+                            setTimeout(function () {
+                                location.href = '${pageContext.request.contextPath}/index'
+                            }, 1500)
+                        } else {
+                            layer.msg("用户名密码错误")
+                        }
                     },
                     error: function () {
                         layer.msg("登录失败")
