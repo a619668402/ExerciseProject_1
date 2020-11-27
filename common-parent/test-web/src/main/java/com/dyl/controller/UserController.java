@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +25,8 @@ public class UserController {
 
     @RequestMapping("list")
     public String userList(Model model) {
-        List<User> all = userService.findAll();
-        model.addAttribute("list", all);
+//        List<User> all = userService.findAll();
+//        model.addAttribute("list", all);
         return "user/list";
     }
 
@@ -38,5 +40,21 @@ public class UserController {
         map.put("count", userPage.getTotal());
         map.put("data", userPage.getRecords());
         return map;
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public String addUser() {
+        return "user/add";
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @ResponseBody
+    public String addUser(User user) {
+        user.setCreateTime(new Date());
+        Integer insert = userService.insert(user);
+        if (insert > 0) {
+            return "success";
+        }
+        return "failure";
     }
 }

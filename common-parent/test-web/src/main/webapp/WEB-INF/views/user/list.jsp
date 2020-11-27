@@ -57,92 +57,11 @@
                 </div>
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+                    <button class="layui-btn" onclick="xadmin.open('添加用户','${pageContext.request.contextPath}/user/add',700,500)"><i class="layui-icon"></i>添加</button>
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form" id="table">
-                        <!--
-                        <thead>
-                        <tr>
-                            <th>
-                                <input type="checkbox" name=""  lay-skin="primary">
-                            </th>
-                            <th>ID</th>
-                            <th>登录名</th>
-                            <th>手机</th>
-                            <th>邮箱</th>
-                            <th>角色</th>
-                            <th>加入时间</th>
-                            <th>状态</th>
-                            <th>操作</th>
-                        </thead>
-                        <tbody>
-                        <%--<c:forEach var="item" items="${list}">--%>
-                            <%--<tr>--%>
-                                <%--<td>--%>
-                                    <%--<input type="checkbox" name=""  lay-skin="primary">--%>
-                                <%--</td>--%>
-                                <%--<td>${item.id}</td>--%>
-                                <%--<td>${item.username}</td>--%>
-                                <%--<td>${item.phone}</td>--%>
-                                <%--<td>${item.email}</td>--%>
-                                <%--<td>${item.nickname}</td>--%>
-                                <%--<td>${item.createTime}</td>--%>
-                                <%--<td class="td-status">--%>
-                                    <%--<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>--%>
-                                <%--<td class="td-manage">--%>
-                                    <%--<a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">--%>
-                                        <%--<i class="layui-icon">&#xe601;</i>--%>
-                                    <%--</a>--%>
-                                    <%--<a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">--%>
-                                        <%--<i class="layui-icon">&#xe642;</i>--%>
-                                    <%--</a>--%>
-                                    <%--<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">--%>
-                                        <%--<i class="layui-icon">&#xe640;</i>--%>
-                                    <%--</a>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                        <%--</c:forEach>--%>
-
-                        <tr>
-                            <td>
-                                <input type="checkbox" name=""  lay-skin="primary">
-                            </td>
-                            <td>1</td>
-                            <td>admin</td>
-                            <td>18925139194</td>
-                            <td>113664000@qq.com</td>
-                            <td>超级管理员</td>
-                            <td>2017-01-01 11:11:42</td>
-                            <td class="td-status">
-                                <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-                            <td class="td-manage">
-                                <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                                    <i class="layui-icon">&#xe601;</i>
-                                </a>
-                                <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe642;</i>
-                                </a>
-                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i>
-                                </a>
-                            </td>
-                        </tr>
-                        -->
-                        <%--</tbody>--%>
                     </table>
-                </div>
-                <div class="layui-card-body ">
-                    <div class="page" id="page">
-                        <%--<div>--%>
-                            <%--<a class="prev" href="">&lt;&lt;</a>--%>
-                            <%--<a class="num" href="">1</a>--%>
-                            <%--<span class="current">2</span>--%>
-                            <%--<a class="num" href="">3</a>--%>
-                            <%--<a class="num" href="">489</a>--%>
-                            <%--<a class="next" href="">&gt;&gt;</a>--%>
-                        <%--</div>--%>
-                    </div>
                 </div>
             </div>
         </div>
@@ -150,30 +69,30 @@
 </div>
 </body>
 <script>
-    layui.use('laypage', function () {
-        var laypage = layui.laypage;
-        laypage.render({
-            elem: 'page',
-            count: ${list.size()},
-            limit: 3,
-        })
-    })
-
     layui.use('table', function () {
         var table = layui.table;
         table.render({
             elem: '#table',
             url: '${pageContext.request.contextPath}/user/listByPage',
             page: true,
-            limit: 2,
+            limit: 5,
+            limits: [5, 10 ,20, 30],
+            loading: true,
             cols: [[
-                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-                ,{field: 'username', title: '用户名', width:80}
-                ,{field: 'phone', title: '性别', width:80, sort: true}
-                ,{field: 'email', title: '城市', width:80}
-                ,{field: 'status', title: '签名', width: 177}
-                ,{field: 'email', title: '积分', width: 80, sort: true}
-                ,{field: 'nickname', title: '评分', width: 80, sort: true}
+                {field: 'id', title: 'ID', fixed: 'left', align: 'center'}
+                ,{field: 'username', title: '用户名', align: 'center'}
+                ,{field: 'nickname', title: '角色', align: 'center'}
+                ,{field: 'phone', title: '手机号', align: 'center'}
+                ,{field: 'email', title: '邮箱', align: 'center'}
+                ,{field: 'status', title: '是否启用', align: 'center', templet: function (d) {
+                        if (d.status == 1) {
+                            return '<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>'
+                        } else {
+                            return '<span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>'
+
+                        }
+                    }}
+                ,{field: 'createTime', title: '创建时间', align: 'center'}
             ]]
         })
     })

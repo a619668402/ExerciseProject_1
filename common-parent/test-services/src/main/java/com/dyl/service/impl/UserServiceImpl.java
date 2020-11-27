@@ -26,8 +26,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     }
 
     @Override
-    public void deleteById(Integer id) {
-        userMapper.deleteById(id);
+    public Integer deleteById(Integer id) {
+        return userMapper.deleteById(id);
     }
 
     @Override
@@ -37,13 +37,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     }
 
     @Override
-    public void insert(User entity) {
-        userMapper.insert(entity);
+    public Integer insert(User entity) {
+        int insert = userMapper.insert(entity);
+        return insert;
     }
 
     @Override
-    public void update(User user) {
-        userMapper.updateById(user);
+    public Integer update(User user) {
+        int i = userMapper.updateById(user);
+        return i;
     }
 
     @Override

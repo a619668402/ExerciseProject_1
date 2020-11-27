@@ -6,9 +6,9 @@ public interface BaseService<T> {
 
     public T findById(Integer id);
 
-    public void deleteById(Integer id);
+    public Integer deleteById(Integer id);
 
     public List<T> findAll();
 
-    public void insert(T entity);
+    public Integer insert(T entity);
 }

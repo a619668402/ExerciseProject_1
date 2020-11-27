@@ -8,9 +8,7 @@ public interface UserService extends BaseService<User> {
 
     public User findByUserNameAndPassword(String userName, String passWord);
 
-    public void insert(User user);
-
-    public void update(User user);
+    public Integer update(User user);
 
     public Page<User> listByPage(int page, int pageSize);
 }
